@@ -11,10 +11,10 @@ CREATE TABLE account (
     password VARCHAR(255) NOT NULL,
     image_path VARCHAR(255),
     is_verified BOOLEAN DEFAULT FALSE,
-    verification_code VARCHAR(4),
+    verification_code VARCHAR(6),
     code_expired_at DATETIME,
     activated_until DATETIME
-);
+); 
 
 CREATE TABLE university (
     UUID BINARY(16) PRIMARY KEY,
