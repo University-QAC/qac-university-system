@@ -41,6 +41,9 @@ public class Account {
     @OneToMany(mappedBy = "account")
     private Set<ProgramRequirementsReviews> programRequirementsReviews = new HashSet<>();
 
+    @OneToMany(mappedBy = "account")
+    private Set<RefreshToken> refreshTokens = new HashSet<>();
+
     public Account() {
     }
 
@@ -154,6 +157,14 @@ public class Account {
 
     public void setProgramRequirementsReviews(Set<ProgramRequirementsReviews> programRequirementsReviews) {
         this.programRequirementsReviews = programRequirementsReviews;
+    }
+
+    public Set<RefreshToken> getRefreshTokens() {
+        return refreshTokens;
+    }
+
+    public void setRefreshTokens(Set<RefreshToken> refreshTokens) {
+        this.refreshTokens = refreshTokens;
     }
 
 }

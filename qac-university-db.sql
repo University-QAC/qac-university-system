@@ -120,3 +120,15 @@ CREATE TABLE program_requirements_reviews(
     FOREIGN KEY (requirement_uuid, program_uuid) REFERENCES program_requirements(requirement_uuid, program_uuid) ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (account_uuid) REFERENCES account(UUID) ON UPDATE CASCADE ON DELETE CASCADE
 );
+
+CREATE TABLE refresh_token (
+    UUID BINARY(16) PRIMARY KEY,
+    token VARCHAR(500) UNIQUE,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    expires_at DATETIME,
+    is_revoked BOOLEAN DEFAULT FALSE,
+    ip_address VARCHAR(45),
+    device_info VARCHAR(500),
+    account_uuid BINARY(16),
+    FOREIGN KEY (account_uuid) REFERENCES account(UUID) ON UPDATE CASCADE ON DELETE CASCADE
+);

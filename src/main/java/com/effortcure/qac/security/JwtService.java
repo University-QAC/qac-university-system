@@ -1,6 +1,8 @@
 package com.effortcure.qac.security;
 
 import java.security.Key;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -76,4 +78,13 @@ public class JwtService {
         return refreshTokenExpiration;
     }
 
+    public LocalDateTime getTokenExpirationTime(String token) {
+        Date expirationDate = extractAllClaims(token).getExpiration();
+        return expirationDate.toInstant().atZone(ZoneOffset.UTC).toLocalDateTime();
+    }
+
+    public boolean isTokenExpired(String token) {
+        Date expiration = extractAllClaims(token).getExpiration();
+        return expiration.before(new Date());
+    }
 }
